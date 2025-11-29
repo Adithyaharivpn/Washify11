@@ -11,9 +11,9 @@ var app=express();
 
 const userRoute=require("./routes/userRoute")
 const EmployeeRoute=require("./routes/EmployeeRoute")
-
+//ghggh
 app.use(express.json())
-
+//tttt
 app.use(cors())
 app.use('/api',userRoute)
 app.use('/e',EmployeeRoute)
