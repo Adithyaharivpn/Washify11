@@ -18,6 +18,7 @@ import {AppBar,
 } from '@mui/material';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from 'axios';
 
 // /E:/washify/EMPLOYEE_APP-main/EMPLOYEE_APP-main/FRONTEND/src/components/AdminCenter.jsx
     
@@ -59,37 +60,37 @@ export default function AdminCenter() {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        const error = validate();
-        if (error) {
-            setSnack({ open: true, severity: 'error', message: error });
-            return;
-        }
+    e.preventDefault();
+    const error = validate();
+    if (error) {
+        setSnack({ open: true, severity: 'error', message: error });
+        return;
+    }
 
-        // Replace below with real API call
-        try {
-            // Example payload
-            const payload = { ...input };
-            console.log('Submitting center:', payload);
+    try {
+        // ACTUAL API CALL
+        const response = await axios.post('http://localhost:4000/a/add-center', input);
+        
+        console.log('Server response:', response.data);
 
-            // Simulate success
-            setSnack({ open: true, severity: 'success', message: 'Center added successfully' });
+        setSnack({ open: true, severity: 'success', message: 'Center added successfully' });
 
-            // Reset form
-            setInput({
-                oname: '',
-                lname: '',
-                hname: '',
-                gname: '',
-                sname: '',
-                aname: '',
-                iname: '',
-                available: true,
-            });
-        } catch (err) {
-            setSnack({ open: true, severity: 'error', message: 'Failed to add center' });
-        }
-    };
+        // Reset form
+        setInput({
+            oname: '',
+            lname: '',
+            hname: '',
+            gname: '',
+            sname: '',
+            aname: '',
+            iname: '',
+            available: true,
+        });
+    } catch (err) {
+        console.error(err);
+        setSnack({ open: true, severity: 'error', message: 'Failed to add center' });
+    }
+};
 
     return (
         <ThemeProvider theme={theme}>

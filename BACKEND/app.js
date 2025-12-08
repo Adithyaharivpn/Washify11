@@ -11,12 +11,15 @@ var app=express();
 
 const userRoute=require("./routes/userRoute")
 const EmployeeRoute=require("./routes/EmployeeRoute")
+const CenterRoute = require("./routes/CenterRoute");   
+
 //ghggh
 app.use(express.json())
 //tttt
 app.use(cors())
 app.use('/api',userRoute)
 app.use('/e',EmployeeRoute)
+app.use('/a',CenterRoute)
 
 app.listen(port,()=>{
     console.log(`Server is up and Running ${port}`)

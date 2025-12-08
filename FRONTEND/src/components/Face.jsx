@@ -12,9 +12,7 @@ function Face() {
   const cardStyle = (role) => ({
     ...styles.card,
     border:
-      selected === role
-        ? "2px solid #3182ce"
-        : "1px solid rgba(16,24,40,0.04)",
+      selected === role ? "2px solid #3182ce" : "1px solid rgba(16,24,40,0.04)",
     boxShadow:
       selected === role
         ? "0 4px 12px rgba(49,130,206,0.12)"
@@ -57,13 +55,10 @@ function Face() {
             {/* ✅ Admin Card */}
             <SpotlightCard spotlightColor="rgba(45, 90, 239, 0.64)">
               <div
-                
                 onClick={() => handleSelect("admin")}
                 role="button"
                 tabIndex={0}
-                onKeyDown={(e) =>
-                  e.key === "Enter" && handleSelect("admin")
-                }
+                onKeyDown={(e) => e.key === "Enter" && handleSelect("admin")}
                 aria-pressed={selected === "admin"}
               >
                 <div style={styles.cardHeader}>
@@ -83,22 +78,22 @@ function Face() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <h3 style={{ ...styles.cardTitle, color: "#ffffffff" }}>Admin Signup</h3><br></br>
-
+                  <h3 style={{ ...styles.cardTitle, color: "#ffffffff" }}>
+                    Admin Signup
+                  </h3>
+                  <br></br>
                 </div>
                 <p style={styles.cardText}>
                   Register as an administrator to manage the system and users.
-                </p><br></br>
+                </p>
+                <br></br>
                 <Link
                   to="/admin"
                   style={{
                     ...styles.buttonPrimary,
-                    opacity:
-                      selected && selected !== "admin" ? 0.6 : 1,
+                    opacity: selected && selected !== "admin" ? 0.6 : 1,
                     pointerEvents:
-                      selected && selected !== "admin"
-                        ? "none"
-                        : "auto",
+                      selected && selected !== "admin" ? "none" : "auto",
                   }}
                 >
                   Sign up as Admin
@@ -109,13 +104,10 @@ function Face() {
             {/* ✅ User Card */}
             <SpotlightCard spotlightColor="rgba(59, 169, 114, 0.69)">
               <div
-               
                 onClick={() => handleSelect("user")}
                 role="button"
                 tabIndex={0}
-                onKeyDown={(e) =>
-                  e.key === "Enter" && handleSelect("user")
-                }
+                onKeyDown={(e) => e.key === "Enter" && handleSelect("user")}
                 aria-pressed={selected === "user"}
               >
                 <div style={styles.cardHeader}>
@@ -135,20 +127,26 @@ function Face() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <h3 style={{ ...styles.cardTitle, color: "#ffffffff" }}>User Signup</h3><br></br>
+                  <h3 style={{ ...styles.cardTitle, color: "#ffffffff" }}>
+                    User Signup
+                  </h3>
+                  <br></br>
                 </div>
                 <p style={styles.cardText}>
-                  Create a user account to request services and view your history.
-                </p><br></br>
+                  Create a user account to request services and view your
+                  history.
+                </p>
+                <br></br>
                 <Link
                   to="/"
                   style={{
-    ...styles.buttonPrimary,          // base styles
-    background: "#2f855a",            // green background
-    color: "#fff",                     // text color (white)
-    opacity: selected && selected !== "user" ? 0.6 : 1,
-    pointerEvents: selected && selected !== "user" ? "none" : "auto",
-  }}
+                    ...styles.buttonPrimary, // base styles
+                    background: "#2f855a", // green background
+                    color: "#fff", // text color (white)
+                    opacity: selected && selected !== "user" ? 0.6 : 1,
+                    pointerEvents:
+                      selected && selected !== "user" ? "none" : "auto",
+                  }}
                 >
                   Sign up as User
                 </Link>
@@ -244,12 +242,10 @@ const styles = {
     border: "1px solid #c6f6d5",
     textAlign: "center",
   },
-cards: {
-  display: "flex",          // use flex to place children side by side
-  gap: "20px",              // space between cards
-  justifyContent: "center", // center cards horizontally
-  flexWrap: "wrap",         // wrap to next line on smaller screens
-},
-
-
+  // cards: {
+  //   display: "flex", // use flex to place children side by side
+  //   gap: "20px", // space between cards
+  //   justifyContent: "center", // center cards horizontally
+  //   flexWrap: "wrap", // wrap to next line on smaller screens
+  // },
 };
