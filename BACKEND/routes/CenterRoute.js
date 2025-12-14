@@ -35,4 +35,26 @@ router.get('/centers', async (req, res) => {
     }
 });
 
+// Center routes
+router.put('/centers/:id', async (req, res) => {
+  try {
+    const center = await Center.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(center);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating center' });
+  }
+});
+
+router.delete('/centers/:id', async (req, res) => {
+  try {
+    await Center.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Center deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting center' });
+  }
+});
+
+
+
+
 module.exports=router;

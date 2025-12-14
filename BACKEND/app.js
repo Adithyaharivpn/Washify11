@@ -17,9 +17,10 @@ const CenterRoute = require("./routes/CenterRoute");
 app.use(express.json())
 //tttt
 app.use(cors())
-app.use('/api',userRoute)
+app.use('/api/users', userRoute);
+app.use('/api', CenterRoute);
 app.use('/e',EmployeeRoute)
-app.use('/a',CenterRoute)
+
 
 app.listen(port,()=>{
     console.log(`Server is up and Running ${port}`)

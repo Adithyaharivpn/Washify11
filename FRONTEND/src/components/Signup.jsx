@@ -20,9 +20,9 @@ const Signup = () => {
       return;
     }
     try {
-      const res = await axios.post(`${baseurl}/api`, input);
+      const res = await axios.post(`${baseurl}/api/users/`, input);
       alert(res.data?.message || "Signup successful");
-      navigate("/L");
+      navigate("/login");
     } catch (error) {
       console.error(error);
       alert(error?.response?.data?.message || "Signup failed. Try again.");
@@ -104,7 +104,7 @@ const Signup = () => {
 
             <div className="link-row">
               Already a user?{" "}
-              <Link to="/L">
+              <Link to="/login">
                 <b>Login</b>
               </Link>
             </div>

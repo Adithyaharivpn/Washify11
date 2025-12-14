@@ -1,46 +1,45 @@
-import { Box, Button, TextField, Typography } from '@mui/material'
-import axios from 'axios'
-import React, { useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import GoogleIcon from '@mui/icons-material/Google';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import { Box, Button, TextField, Typography } from "@mui/material";
+import axios from "axios";
+import React, { useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import GoogleIcon from "@mui/icons-material/Google";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import "./Login.css";
 
-
 const Login = () => {
-    var[input,setInput] =useState({})
-    var baseurl = import.meta.env.VITE_API_BASE_URL;
-    var navigate=useNavigate();
-        const inpuHandler =(e)=>{
-            // console.log(e.target.value)
-            setInput({...input,[e.target.name]:e.target.value})
-            console.log(input)
-            
-        }
-        const addhandler=()=>
-          axios
-      .post(`${baseurl}/api/login`, input)
-      .then((res) => {
-        console.log(res.data);
-        alert(res.data.message)
-        sessionStorage.setItem("role",res.data.user.role)
-        if(res.status===200){
-          alert(res.data.message)
-          if(res.data.user.role=='admin'){
-            navigate('/admin')
-          }else{
-            navigate('/home')
-        }
+  var [input, setInput] = useState({});
+  var baseurl = import.meta.env.VITE_API_BASE_URL;
+  var navigate = useNavigate();
+  const inpuHandler = (e) => {
+    // console.log(e.target.value)
+    setInput({ ...input, [e.target.name]: e.target.value });
+    console.log(input);
+  };
+  const addhandler = async () => {
+    try {
+      const res = await axios.post(`${baseurl}/api/users/login`, input);
+      const data = res.data || {};
+      console.log(data);
+      if (res.status === 200 && data.user) {
+        // persist basic user info for UI
+        sessionStorage.setItem("role", data.user.role || "");
+        sessionStorage.setItem(
+          "userName",
+          data.user.fname || data.user.name || data.user.ename || ""
+        );
+        if (data.token) sessionStorage.setItem("token", data.token);
+        alert(data.message || "Logged in");
+        if (data.user.role === "admin") navigate("/admin", { replace: true });
+        else navigate("/home", { replace: true });
+      } else {
+        alert(data.message || "Login failed");
       }
-    
-      })  
-      .catch((error) => {
-        console.log(error);
-      });
-          
+    } catch (error) {
+      console.error(error);
+      alert(error?.response?.data?.message || "Login error.");
+    }
+  };
 
-            console.log("Clicked")
-    
   return (
     <div className="login-page">
       <Box
@@ -133,7 +132,11 @@ const Login = () => {
             Don’t have an account?{" "}
             <Link
               to="/"
-              style={{ color: "#055fbf", fontWeight: 500, textDecoration: "none" }}
+              style={{
+                color: "#055fbf",
+                fontWeight: 500,
+                textDecoration: "none",
+              }}
             >
               <b>SignUp</b>
             </Link>
@@ -191,20 +194,28 @@ const Login = () => {
             minHeight: { xs: 160, md: "auto" },
           }}
         >
-          <div className="illustration-card" style={{ maxWidth: 420, textAlign: "center" }}>
+          <div
+            className="illustration-card"
+            style={{ maxWidth: 420, textAlign: "center" }}
+          >
             <div className="illustration-image">Illustration / Map preview</div>
             <Typography
               variant="body2"
-              sx={{ color: "var(--muted)", textAlign: "center", maxWidth: 320, margin: "12px auto 0" }}
+              sx={{
+                color: "var(--muted)",
+                textAlign: "center",
+                maxWidth: 320,
+                margin: "12px auto 0",
+              }}
             >
-              Discover nearby washing centres, compare ratings and services with Washify.
+              Discover nearby washing centres, compare ratings and services with
+              Washify.
             </Typography>
           </div>
         </Box>
       </Box>
     </div>
-  )
-}
+  );
+};
 
-export default Login
-
+export default Login;

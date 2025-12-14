@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const handleLogout = ()=>{
     sessionStorage.clear();
-    navigate('/')
+    navigate('/signin')
   }
 
   return (
