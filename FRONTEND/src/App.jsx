@@ -34,7 +34,7 @@ function App() {
 
       <Routes>
         {/* 🔹 Signup Page */}
-        <Route path='/' element={<Signup />} />
+        <Route path='/S' element={<Signup />} />
 
         {/* 🔹 Login Page */}
         <Route path='/L' element={<Login />} />
@@ -55,7 +55,7 @@ function App() {
         <Route path='/home' element={<Home />} />
 
         {/* 🔹 Face Page */}
-        <Route path='/face' element={<Face />} />
+        <Route path='/' element={<Face />} />
       </Routes>
     </>
   );

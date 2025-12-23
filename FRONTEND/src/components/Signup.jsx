@@ -43,11 +43,11 @@ const Signup = () => {
 
         <div className="signup-grid">
           <div className="panel-form">
-            <Typography id="signup-heading" className="signup-heading">
+            <Typography id="signup-heading" className="signup-heading" color="white">
               <b><i>WASHIFY.</i></b>
             </Typography>
 
-            <Typography className="signup-sub">Signup Form</Typography>
+            <Typography className="signup-sub" color="white">Signup Form</Typography>
 
             <div className="form-row" role="form" aria-label="Signup fields">
               <TextField
@@ -59,6 +59,21 @@ const Signup = () => {
                 onChange={inputHandler}
                 autoComplete="name"
                 aria-label="Full name"
+                 sx={{
+    input: { color: "white" },                 // text color
+    label: { color: "white" },                // label color
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",                 // border
+      },
+      "&:hover fieldset": {
+        borderColor: "orange",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "yellow",
+      },
+    },
+  }}
               />
 
               <TextField
@@ -71,9 +86,24 @@ const Signup = () => {
                 autoComplete="email"
                 type="email"
                 aria-label="Email"
+                 sx={{
+                input: { color: "white" },                 // text color
+                label: { color: "white" },                // label color
+                "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+               borderColor: "white",                 // border
+               },
+              "&:hover fieldset": {
+        borderColor: "orange",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "yellow",
+      },
+    },
+  }}
               />
 
-              <TextField
+              {/* <TextField
                 fullWidth
                 label="Password"
                 variant="outlined"
@@ -83,7 +113,35 @@ const Signup = () => {
                 type="password"
                 autoComplete="new-password"
                 aria-label="Password"
-              />
+              /> */}
+
+              <TextField
+  fullWidth
+  label="Password"
+  variant="outlined"
+  margin="normal"
+  name="password"
+  type="password"
+  autoComplete="new-password"
+  onChange={inputHandler}
+  aria-label="Password"
+  sx={{
+    input: { color: "white" },                 // text color
+    label: { color: "white" },                // label color
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",                 // border
+      },
+      "&:hover fieldset": {
+        borderColor: "orange",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "yellow",
+      },
+    },
+  }}
+/>
+
 
               <Button
                 onClick={addHandler}
