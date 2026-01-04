@@ -4,6 +4,7 @@ import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
 import PeopleIcon from '@mui/icons-material/People';
+import { ShoppingCart } from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -55,6 +56,12 @@ const AdminLayout = () => {
               <ListItemButton component={Link} to="/admin/users">
                 <ListItemIcon><PeopleIcon /></ListItemIcon>
                 <ListItemText primary="Manage Users" />
+              </ListItemButton>
+            </ListItem>
+              <ListItem disablePadding>
+              <ListItemButton component={Link} to="/admin/orders">
+                <ListItemIcon><ShoppingCart /></ListItemIcon>
+                <ListItemText primary="Manage Orders" />
               </ListItemButton>
             </ListItem>
           </List>

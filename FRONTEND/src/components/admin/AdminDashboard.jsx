@@ -72,25 +72,25 @@ const AdminDashboard = () => {
 
         {/* Summary Cards */}
         <Grid container spacing={2} sx={{ mb: 3 }}>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle2" color="text.secondary">Total Orders</Typography>
               <Typography variant="h6" sx={{ fontWeight: 700 }}>{stats.totalOrders}</Typography>
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle2" color="text.secondary">Active Orders</Typography>
               <Typography variant="h6" sx={{ fontWeight: 700 }}>{stats.activeOrders}</Typography>
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle2" color="text.secondary">Completed Orders</Typography>
               <Typography variant="h6" sx={{ fontWeight: 700 }}>{stats.completedOrders}</Typography>
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle2" color="text.secondary">Total Earnings</Typography>
               <Typography variant="h6" sx={{ fontWeight: 700 }}>₹{stats.totalEarnings}</Typography>

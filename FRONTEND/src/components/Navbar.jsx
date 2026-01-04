@@ -17,10 +17,9 @@ const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Check session storage for role (e.g., 'user', 'admin')
     const savedRole = sessionStorage.getItem('role');
     setRole(savedRole);
-  }, [location]); // Re-run when route changes
+  }, [location]); 
 
   const handleLogout = () => {
     sessionStorage.clear();
@@ -34,7 +33,7 @@ const Navbar = () => {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             
-            {/* ---------------- LOGO SECTION ---------------- */}
+
             <Box 
               component={Link} 
               to="/home" 
@@ -91,9 +90,9 @@ const Navbar = () => {
               {/* LOGIC: If NOT logged in */}
               {!role && (
                 <>
-                  {/* <Button color="inherit" component={Link} to="/admin/login">
+                  <Button color="inherit" component={Link} to="/admin/login">
                     Admin Portal
-                  </Button> */}
+                  </Button>
                   <Button color="inherit" component={Link} to="/login">
                     Login
                   </Button>

@@ -23,6 +23,25 @@ router.post('/', async (req, res) => {
     }
 });
 
+// UPDATE CENTER (Put this in your file)
+router.put('/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const updatedData = req.body;
+        
+        const center = await centerModel.findByIdAndUpdate(id, updatedData, { new: true });
+        
+        if (!center) {
+            return res.status(404).json({ message: "Center not found" });
+        }
+        
+        res.status(200).json({ message: "Center updated successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error updating center" });
+    }
+});
+
 // DELETE CENTER
 router.delete('/:id', async (req, res) => {
     try {

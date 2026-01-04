@@ -29,7 +29,7 @@ import AddIcon from "@mui/icons-material/Add";
 export default function AdminCenter() {
   const baseurl = import.meta.env.VITE_API_BASE_URL;
   // ✅ Point to the correct centers route
-  const API_URL = `${baseurl}/api/centers/`; 
+  const API_URL = `${baseurl}/api/centers`; 
 
   const [centers, setCenters] = useState([]);
   const [open, setOpen] = useState(false);
@@ -51,7 +51,7 @@ export default function AdminCenter() {
   // 1. GET (Read)
   const fetchCenters = async () => {
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(`${baseurl}/api/centers/`);
       setCenters(response.data);
     } catch (error) {
       console.error("Error fetching data", error);
