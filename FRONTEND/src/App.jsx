@@ -1,61 +1,83 @@
-import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import "./App.css";
 
+// --- Components & Pages ---
+import Signup from "./components/pages/Signup";
+import Login from "./components/pages/Login";
+import Home from "./components/pages/Home";
+import LandingPage from "./components/pages/LandingPage";
+// import CenterDetails from './pages/CenterDetails'; // Uncomment when you create this file
 
-// then add this route inside <Routes>:
-// <Route path='/face' element={<Face />} />
+// --- Admin Components ---
+// Make sure these paths match where you saved the files!
+import AdminLogin from "./components/admin/AdminLogin";
+import AdminDashboard from "./components/admin/AdminDashboard";
+import AdminCenter from "./components/admin/AdminCenter";
+import AdminUsers from "./components/admin/AdminUsers"; // Ensure you created this file
 
-// 🧩 Component Imports
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Navbar from './components/Navbar';
-import Maain from './components/Maain';
-import Admin from './components/Admin';
-import Home from './components/Home'; 
-import Face from './components/Face'; 
-import AdminLogin from './components/AdminLogin'; 
-import AdminHome from './components/AdminHome'; 
-import AdminCenter from './components/AdminCenter';
-
-
-
+// --- Layouts ---
+import MainLayout from "./components/layouts/MainLayout";
+import AdminLayout from "./components/layouts/AdminLayout";
+import AdminOrders from "./components/admin/AdminOrders";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  // Ensure you have this import at the top of the file:
-  // import AdminCenter from './components/AdminCenter';
-
   return (
     <>
-      {/* Optional Navbar (uncomment if needed) */}
-      {/* <Navbar /> */}
-
       <Routes>
-        {/* 🔹 Signup Page */}
-        <Route path='/S' element={<Signup />} />
+        {/* ---------------- PUBLIC ROUTES ---------------- */}
+        <Route
+          path="/"
+          element={
+            <MainLayout>
+              <LandingPage />
+            </MainLayout>
+          }
+        />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
 
-        {/* 🔹 Login Page */}
-        <Route path='/L' element={<Login />} />
+        {/* ---------------- USER ROUTES ---------------- */}
+        <Route
+          path="/home"
+          element={
+            <MainLayout>
+              <Home />
+            </MainLayout>
+          }
+        />
 
-        {/* 🔹 Admin Page (wrapped in Maain layout) */}
-        <Route path='/admin' element={<Maain child={<Admin />} />} />
+        <Route
+          path="/center/:id"
+          element={
+            <MainLayout>
+              {/* <CenterDetails /> */}
+              <div style={{ padding: 20 }}>
+                Center Details Page (Coming Soon)
+              </div>
+            </MainLayout>
+          }
+        />
 
-        {/* 🔹 Admin Login Page */}
-        <Route path="/admin-login" element={<AdminLogin />} />
+        {/* ---------------- ADMIN ROUTES ---------------- */}
+        {/* Standalone Admin Login (No Layout) */}
+        <Route path="/admin/login" element={<AdminLogin />} />
 
-        {/* 🔹 Admin Home Page */}
-        <Route path="/admin-home" element={<AdminHome />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="centers" element={<AdminCenter />} />
+          <Route path="users" element={<AdminUsers />} />
 
-        {/* 🔹 Admin Center Page */}
-        <Route path="/admin-center" element={<AdminCenter/>} />
+          {/* ADD THIS NEW ROUTE */}
+          <Route path="orders" element={<AdminOrders />} />
+        </Route>
 
-        {/* 🔹 Home Page (includes Beams background) */}
-        <Route path='/home' element={<Home />} />
-
-        {/* 🔹 Face Page */}
-        <Route path='/' element={<Face />} />
+        {/* ---------------- 404 CATCH-ALL ---------------- */}
+        <Route
+          path="*"
+          element={<div className="error-page">404 - Page Not Found</div>}
+        />
       </Routes>
     </>
   );

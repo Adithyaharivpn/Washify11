@@ -36,4 +36,13 @@ router.delete("/:id",async(req,res)=>{
     
   }
 })
+// Add this to your backend/routes/userRoute.js
+router.get('/', async(req, res) => {
+    try {
+        const users = await userModel.find();
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).send("Error fetching users");
+    }
+});
 module.exports=router;
